@@ -3,10 +3,7 @@ package br.com.alura.forum_hub_api.domain.topic;
 import br.com.alura.forum_hub_api.domain.course.Course;
 import br.com.alura.forum_hub_api.domain.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -31,9 +28,11 @@ public class Topic {
     private Course course;
 
     @Column(name = "title")
+    @Setter
     private String title;
 
     @Column(name = "message")
+    @Setter
     private String message;
 
     @Column(name = "created_at")
@@ -49,4 +48,30 @@ public class Topic {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+
+    public Topic(User user, Course course, TopicCreateData data) {
+        this.user = user;
+        this.course = course;
+        this.title = data.title();
+        this.message = data.message();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void updateData(TopicUpdateData data) {
+
+        if (data.title() != null) {
+            this.title = data.title();
+        }
+
+        if (data.message() != null) {
+            this.message = data.message();
+        }
+
+        if (data.status() != null) {
+            this.status = data.status();
+        }
+
+        this.updatedAt = LocalDateTime.now();
+    }
 }
