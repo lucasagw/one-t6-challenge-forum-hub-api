@@ -10,5 +10,4 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     Optional<Topic> findByTitleAndMessage(String title, String message);
 
-    Optional<Topic> findByCourseName(Pageable pageable);
 }

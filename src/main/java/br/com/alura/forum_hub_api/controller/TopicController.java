@@ -1,6 +1,7 @@
 package br.com.alura.forum_hub_api.controller;
 
 import br.com.alura.forum_hub_api.domain.topic.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/topics")
+@SecurityRequirement(name = "bearer-key")
 public class TopicController {
 
     @Autowired

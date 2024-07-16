@@ -54,11 +54,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<?> handle400Error(NoSuchElementException ex) {
-        return ResponseEntity.badRequest().body(ex.getMessage());
-    }
-
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handle400Error(IllegalArgumentException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
